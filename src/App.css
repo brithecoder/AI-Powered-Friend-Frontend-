@@ -1,0 +1,204 @@
+
+
+:root {
+  --accent-pink: #ffafcc;
+  --soft-lavender: #cdb4db;
+  --message-bg-user: #ffc8dd;
+  --message-bg-pixel: #ffffff;
+  --text-color: #4a4a4a;
+}
+
+body {
+  background: linear-gradient(135deg, #fefae0 0%, #faedcd 100%);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-container { 
+  width: 90%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  border-radius: 30px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.header-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-family: 'header-font', cursive, sans-serif; /* If you want to import a cute font later */
+  color: #ff8fab;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.chat-window { 
+  height: 450px; 
+  overflow-y: scroll; 
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  scrollbar-width: none; /* Hide scrollbar for Mac feel */
+}
+
+.chat-window::-webkit-scrollbar { display: none; }
+
+.message { 
+  max-width: 75%; 
+  padding: 14px 18px; 
+  border-radius: 22px; 
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-color);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.user { 
+  align-self: flex-end;
+  background: var(--message-bg-user);
+  border-bottom-right-radius: 4px;
+}
+
+.pixel { 
+  align-self: flex-start;
+  background: var(--message-bg-pixel);
+  border-bottom-left-radius: 4px;
+  border: 1px solid #f1f1f1;
+}
+
+.clear-btn {
+  background: transparent;
+  color: #fb6f92;
+  border: 1px solid #fb6f92;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 11px;
+  transition: all 0.3s;
+}
+
+.clear-btn:hover {
+  background: #fb6f92;
+  color: white;
+}
+
+.input-area { 
+  display: flex; 
+  gap: 10px; 
+  margin-top: 25px;
+  background: white;
+  padding: 8px;
+  border-radius: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+input { 
+  flex: 1; 
+  padding: 12px 20px; 
+  border: none; 
+  outline: none;
+  font-size: 15px;
+  color: var(--text-color);
+}
+button[onClick="sendMessage"], .send-btn {
+  background: linear-gradient(135deg, #ffafcc 0%, #ff8fab 100%);
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Makes it 'pop' */
+  box-shadow: 0 4px 15px rgba(255, 175, 204, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* When you hover over it */
+button[onClick="sendMessage"]:hover:not(:disabled) {
+  transform: scale(1.05) translateY(-2px); /* Lifts up slightly */
+  box-shadow: 0 6px 20px rgba(255, 175, 204, 0.6);
+  filter: brightness(1.05);
+}
+
+/* When you click it */
+button[onClick="sendMessage"]:active:not(:disabled) {
+  transform: scale(0.95); /* Squishes down */
+}
+
+/* When Pixel is thinking */
+button[onClick="sendMessage"]:disabled {
+  background: #f1f1f1;
+  color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+* Typing Indicator Styles */
+.typing-indicator {
+  display: flex;
+  gap: 8px;
+  width: fit-content;
+  padding: 15px 25px !important;
+}
+
+.typing-indicator span {
+  display: inline-block;
+  animation: float 1.4s infinite ease-in-out;
+  font-size: 1.2rem;
+}
+
+/* staggered delays so they don't move at the same time */
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+.is-thinking {
+  border: 2px solid var(--accent-pink) !important;
+  box-shadow: 0 0 20px rgba(255, 175, 204, 0.6);
+  animation: pulse-glow 2s infinite ease-in-out;
+  transition: all 0.5s ease;
+  filter: saturate(1.1);
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 175, 204, 0.4);
+    border-color: var(--accent-pink);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(205, 180, 219, 0.8); /* Switches to lavender glow */
+    border-color: var(--soft-lavender);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 175, 204, 0.4);
+    border-color: var(--accent-pink);
+  }
+}
