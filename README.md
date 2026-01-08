@@ -1,6 +1,14 @@
 # 🌸 Pixel AI: My Personal AI Friend Frontend
 Pixel is a full-stack, AI-powered chat application. She features a persistent memory (via LocalStorage), a responsive chat interface, and a "personality" driven by the Gemini/Groq API.
 
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+
+## 🔗 Quick Links
+- **Try it out:** [Live Demo](https://ai-powered-pixel.vercel.app/)
+- **Backend API:** [Render Server](https://ai-powered-friend-backend.onrender.com/docs)
+
 ## ✨ Features
 **Real-time AI Chat:** Powered by a FastAPI backend.
 
