@@ -62,3 +62,5 @@ src/App.css - Custom styling for Pixel's personality.
 [ ] Implement user login for cross-device syncing.
 
 [ ] Add dark mode support.
+
+![ScreenShot of App](./public/appSS.png)
