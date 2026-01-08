@@ -34,7 +34,11 @@ cd AI-Powered-Friend-Frontend
 npm install
 ```
 **3. Connect the Backend**
-Open src/App.jsx and ensure the API endpoint is pointing to your local backend (usually http://localhost:8000/chat) or your live Render URL.
+By default, the app is configured to talk to the live production server:
+`https://ai-powered-friend-backend.onrender.com/chat`
+
+If you are developing locally and want to use a local backend, change the URL in `src/App.jsx` to:
+`http://localhost:8000/chat`
 
 **4. Start the development server**
 ```Bash
