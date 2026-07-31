@@ -4,8 +4,9 @@
   --accent-pink: #ffafcc;
   --soft-lavender: #cdb4db;
   --message-bg-user: #ffc8dd;
-  --message-bg-pixel: #ffffff;
+  --message-bg-pixel: #e8dff5;
   --text-color: #4a4a4a;
+  --system-font-stack: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
@@ -15,6 +16,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: var(--system-font-stack);
 }
 
 .chat-container { 
@@ -60,6 +62,8 @@ h1 {
   border-radius: 22px; 
   font-size: 15px;
   line-height: 1.5;
+  letter-spacing: -0.01em;    /* Subtle iOS tight typography */
+  white-space: pre-wrap;      /* Preserves double newlines for Pixel's paragraphs */
   color: var(--text-color);
   box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
@@ -74,7 +78,7 @@ h1 {
   align-self: flex-start;
   background: var(--message-bg-pixel);
   border-bottom-left-radius: 4px;
-  border: 1px solid #f1f1f1;
+  box-shadow: 0 4px 12px rgba(255, 175, 204, 0.25);
 }
 
 .clear-btn {
@@ -111,7 +115,7 @@ input {
   font-size: 15px;
   color: var(--text-color);
 }
-button[onClick="sendMessage"], .send-btn {
+ .send-btn {
   background: linear-gradient(135deg, #ffafcc 0%, #ff8fab 100%);
   color: white;
   border: none;
@@ -128,19 +132,19 @@ button[onClick="sendMessage"], .send-btn {
 }
 
 /* When you hover over it */
-button[onClick="sendMessage"]:hover:not(:disabled) {
+.send-btn:hover:not(:disabled) {
   transform: scale(1.05) translateY(-2px); /* Lifts up slightly */
   box-shadow: 0 6px 20px rgba(255, 175, 204, 0.6);
   filter: brightness(1.05);
 }
 
 /* When you click it */
-button[onClick="sendMessage"]:active:not(:disabled) {
+.send-btn:active:not(:disabled){
   transform: scale(0.95); /* Squishes down */
 }
 
 /* When Pixel is thinking */
-button[onClick="sendMessage"]:disabled {
+.send-btn:disabled{
   background: #f1f1f1;
   color: #ccc;
   cursor: not-allowed;

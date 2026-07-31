@@ -7,7 +7,7 @@ function App() {
   // const [chatHistory, setChatHistory] = useState([]);
   const [chatHistory, setChatHistory] = useLocalStorage(
     "pixel-chat-memory",
-    []
+    [],
   );
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,14 +28,17 @@ function App() {
     const startTime = Date.now();
 
     try {
-      const res = await fetch('https://ai-powered-friend-backend.onrender.com/chat', {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: updatedHistoryForAPI }), // Send the whole list!
-      });
+      const res = await fetch(
+        "https://ai-powered-friend-backend.onrender.com/chat",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ messages: updatedHistoryForAPI }), // Send the whole list!
+        },
+      );
 
       console.log(
-        "⏳ Step 2: Backend received request, waiting for AI to finish thinking..."
+        "⏳ Step 2: Backend received request, waiting for AI to finish thinking...",
       );
 
       if (!res.ok) throw new Error("Backend crashed or timed out");
@@ -50,7 +53,7 @@ function App() {
       console.log(
         `✅ Step 3: Success! Total time: ${
           (endTime - startTime) / 1000
-        } seconds.`
+        } seconds.`,
       );
       // Add Pixel's response to the end of history
       setChatHistory((prev) => [...prev, pixelMessage]);
@@ -99,7 +102,10 @@ function App() {
       </div>
       <div className={`chat-window ${isLoading ? "is-thinking" : ""}`}>
         {chatHistory.map((msg, i) => (
-          <div key={i} className={`message ${msg.role}`}>
+          <div
+            key={i}
+            className={`message ${msg.role === "assistant" ? "pixel" : msg.role}`}
+          >
             <strong>{msg.role === "user" ? "You" : "Pixel"}:</strong>{" "}
             {msg.content}
           </div>
@@ -111,7 +117,6 @@ function App() {
             <span>☁️</span>
           </div>
         )}
-        {isLoading && <div className="loading">Pixel is thinking...🌸</div>}
         <div ref={messagesEndRef} />
       </div>
       <div className="input-area">
